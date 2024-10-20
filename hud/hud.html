@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="hud.css">
+	<link rel="stylesheet" href="anim.css">
+	<link rel="stylesheet" href="notify.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/327a20bfc6.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<title>LS-RP.GE | HUD</title>
+</head>
+
+<body id="darkness">
+
+	<!-- <div id="prompt" v-if="text">
+            <div class="text" v-html="text"></div>
+        </div> -->
+
+
+	<div class="" id="crosshairDiv">
+		<div class="" id="indicatorArea">
+			<!-- <div class="indicator"></div> -->
+		</div>
+	</div>
+
+
+	<div class="notification" id="notify_1">
+		<div class="notification-header">
+			<h3 class="notification-title" id="notify_1_title">სათაური</h3>
+			<i class="fa fa-times" id="notify_1_close" onclick="closeFirstNotification()"></i>
+		</div>
+		<div class="notification-container">
+			<div class="notification-media">
+				<img id="notify_1_img"
+					src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+					alt="" class="notification-user-avatar">
+			</div>
+			<div class="notification-content">
+				<p class="notification-text" id="notify_1_text">
+					 
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!--<div id="interaction-notifs" class="" style="background-color: rgba(240, 248, 255, 0.353);position: absolute;bottom: 5%;left: 95%;transform: translate(-95%, 2%);width: 20vw;max-width: 20vw;min-height: 10vh;border-radius: 8px;border: 1px solid rgba(0, 0, 0, 0.263);background-image: url('res/blur.jpg');background-size: cover;background-repeat: no-repeat;opacity: 0.75;">
+		-->
+	<div id="interaction-notifs" class="interaction-notificationsClass">
+		<div class="interaction-content-menu">
+			<div class="interactionKey">
+				<h4>E</h4>
+			</div>
+			<div class="interactionSetting">
+				<small>ინტერაქცია</small>
+			</div>
+		</div>
+		<div class="interactionDescription" id="interaction">
+			<p>სახლში შესასვლელად </p>
+
+		</div>
+	</div>
+
+
+	<div class="container" id="notify_2">
+
+	</div>
+
+	<div id="logo">
+		<img id="logoImg" src="http://ls-rp.ge/logo.png" height="40vh">
+	</div>
+
+	<script src="notify.js"></script>
+
+	<div style="position: absolute;top: 98%;right: 45%;opacity: 0.05;color: whitesmoke;">
+		<span id="versionText"></span>
+	</div>
+
+	<div id="centered">
+		<div id="ribbondiv">
+			<h1 id="ribbontext"></h1>
+			<img id="ribbon" class="levelimg">
+			<h1 id="ribbonamount"></h1>
+		</div>
+
+		<img id="cl_crosshair_custom" src="res/crosshair/white.png" width="25" height="25">
+
+		<svg id="cl_crosshair_default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+			<path id="crosshair_0" d="M59.948481,50h10.126133-10.126133Z" transform="matrix(2 0 0 10-65.011548-450)"
+				fill="#ffffff" stroke="#ffffff" stroke-width="0.5" />
+			<path id="crosshair_1" d="M40.051519,50h-9.948481h9.948481Z" transform="matrix(2 0 0 10-35.077277-450)"
+				fill="#ffffff" stroke="#ffffff" stroke-width="0.5" />
+			<path id="crosshair_2" d="M50,39.971576v-9.948481v9.94848" transform="matrix(10 0 0 2-450-34.997335)"
+				fill="#ffffff" stroke="#ffffff" stroke-width="0.5" />
+			<path id="crosshair_3" d="M50,60.046189v9.948481-9.948481Z" transform="matrix(10 0 0 2-450-65.02043)"
+				fill="#ffffff" stroke="#ffffff" stroke-width="0.5" />
+		</svg>
+
+		<img id="centeredimgm" src="res/crosshair/m_white.png" width="25" height="25">
+
+		<!-- <div id="levelupdiv">
+				<img src="res/ranks/0.png" id="levelimg">
+			</div> -->
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- <div class="progress-bar">
+			<div class="barOverflow">
+			<div class="bar"></div>
+			</div>
+		</div> -->
+
+	<div class="main-hud-container" id="mainHudContainer">
+		<div class="left-hud"></div>
+		<div class="right-hud">
+			<div class="online-players-content">
+				<div class="players-online">
+					<div class="players-icon-draw">
+						<i class="fa-solid fa-clock"></i>
+					</div>
+					<p class="players-online-number" id="timeOnline"></p>
+				</div>
+				<div class="players-online">
+					<div class="players-icon-draw">
+						<i class="fa-solid fa-users iconRotation"></i>
+					</div>
+					<p class="players-online-number" id="playersOnline"></p>
+				</div>
+				<img src="res/dantes_logo_1.png" class="logo" width="50px" height="50px" id="mainLogo" alt="mainLogo">
+			</div>
+
+			<div class="money-container">
+				<div class="cash-container">
+					<h3 id="cash"></h3>
+					<i class="fa-solid fa-money-bill-1-wave"></i>
+				</div>
+				<div class="bank-container">
+					<h3 id="bank"></h3>
+					<i class="fa-solid fa-building-columns"></i>
+				</div>
+			</div>
+
+			<div class="guns-and-bullets" id="gunsAndBullets">
+				<img src="res/AssaultRifleMK II.png" width="250px" class="weapon-icon" id="weaponIcon" alt="weaponIcon">
+				<div class="bullets-container">
+					<h1 class="bullets-in-mag" id="bulletsInMag"></h1>
+					<div class="bullet-and-logo">
+						<p class="bullets-in-inv" id="bulletsInInv"></p>
+						<img src="res/bullets.png" width="15px" alt="" class="bullets-icon" id="bulletsIcon">
+					</div>
+				</div>
+			</div>
+
+			<div class="speedometer-main-container" id="speedoMainContainer">
+				<div class="rpm">
+					<div class="rpmh1Divs rpm4">
+						<h1>4</h1>
+					</div>
+					<div class="rpmh1Divs rpm35">
+						<h1>3</h1>
+						<h1>5</h1>
+					</div>
+					<div class="rpmh1Divs rpm26">
+						<h1>2</h1>
+						<h1>6</h1>
+					</div>
+					<div class="rpmh1Divs rpm17">
+						<h1>1</h1>
+						<h1>7</h1>
+					</div>
+					<div class="rpmh1Divs rpm08">
+						<h1>0</h1>
+						<h1>8</h1>
+					</div>
+				</div>
+				<div class="speedo"></div>
+			</div>
+
+			<!-- <div class="speedometer-progress-bar" id="speedometer">
+				<svg class="speedo-progress" id="speedometer" width="355" height="355"
+					viewBox="-31.25 -31.25 312.5 312.5" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+					<defs>
+						<linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+							<stop offset="0%" style="stop-color:#F7CE68; stop-opacity:1;" />
+							<stop offset="100%" style="stop-color:#fc8744; stop-opacity:1;" />
+						</linearGradient>
+
+						<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+							<feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="orange" />
+						</filter>
+					</defs>
+
+					<circle r="115" cx="125" cy="125" stroke="rgba(0, 0, 0, 0.486)" stroke-width="8"
+						stroke-linecap="single" stroke-dashoffset="198px" fill="transparent" stroke-dasharray="320px">
+					</circle>
+
+					<circle r="115" cx="125" cy="125" fill="transparent" stroke="rgb(71, 71, 71)" stroke-width="8"
+						stroke-dasharray="500.2px" stroke-dashoffset="20"></circle>
+
+					<circle id="progressCircle" r="115" cx="125" cy="125" stroke="url(#gradientStroke)" stroke-width="8"
+						stroke-linecap="single" stroke-dashoffset="692.2px" fill="transparent"
+						stroke-dasharray="722.2px" filter="url(#shadow)">
+					</circle>
+
+				</svg>
+
+
+
+				<div class="speedometer">
+					<div class="speedometer-form">
+						<div class="num4 nums">
+							<div class="number" id="speedoFour">4</div>
+						</div>
+
+						<div class="num35 nums">
+							<div class="number" id="speedoThree">3</div>
+							<div class="number" id="speedoFive">5</div>
+							<div class="line line1"></div>
+						</div>
+
+						<div class="num26 nums">
+							<div class="number" id="speedoTwo">2</div>
+							<div class="number" id="speedoSix">6</div>
+							<div class="line line2"></div>
+						</div>
+
+						<div class="num17 nums">
+							<div class="number" id="speedoOne">1</div>
+							<div class="number" id="speedoSeven">7</div>
+							<div class="line line3"></div>
+						</div>
+
+						<div class="num08 nums">
+							<div class="number" id="speedoZero">0</div>
+							<div class="number" id="speedoEight">8</div>
+						</div>
+
+						<div class="speed-and-gears">
+
+
+
+
+							<svg class="fuel-progress" id="fuelBarProgress" width="420" height="420"
+								viewBox="-31.25 -31.25 312.5 312.5" version="1.1" xmlns="http://www.w3.org/2000/svg"
+								style="transform:rotate(0deg)">
+
+								<defs>
+									<linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" style="stop-color:#FBAB7E; stop-opacity:1;" />
+										<stop offset="100%" style="stop-color:#F7CE68; stop-opacity:1;" />
+									</linearGradient>
+
+									<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+										<feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="red" />
+									</filter>
+								</defs>
+
+								<circle r="115" cx="125" cy="125" fill="transparent" stroke="rgb(175, 175, 175)"
+									stroke-width="8" stroke-dasharray="722.2px" stroke-dashoffset="0"></circle>
+
+								<circle id="progressFuelCircle" r="115" cx="125" cy="125" stroke="url(#gradientStroke)"
+									stroke-width="8" stroke-linecap="round" stroke-dashoffset="722.2px"
+									fill="transparent" stroke-dasharray="722.2px" filter="url(#shadow)">
+								</circle>
+							</svg>
+
+
+							<div class="speed" id="speed">142</div>
+							<div class="gears" id="gears">
+								<i class="fa-solid fa-gas-pump" id="gasPump"></i>
+							</div>
+						</div>
+
+						<div class="kmh-decor">
+							<h1 class="kmh">KM/H</h1>
+						</div>
+
+
+						<div class="car-controls">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								fill="#000000" height="25px" width="25px" version="1.1" id="Layer_1"
+								viewBox="0 0 511.708 511.708" xml:space="preserve">
+								<g>
+									<g>
+										<path
+											d="M503.4,187.504h-34.1c-3.7,0-6.9,2.3-8.1,5.8l-23.7,71h-23.2l-23.1-38.5c-1.5-2.6-4.3-4.1-7.3-4.1h-34.1v-25.6    c0-4.7-3.8-8.5-8.5-8.5h-59.7v-34.1h25.6c4.7,0,8.5-3.8,8.5-8.5v-51.3c0-4.7-3.8-8.5-8.5-8.5H153.5c-4.7,0-8.5,3.8-8.5,8.5v51.2    c0,4.7,3.8,8.5,8.5,8.5h25.6v34.1h-68.3c-2.3,0-4.4,0.9-6,2.5c-1.6,1.6-2.5,3.8-2.5,6v25.6H42.6c-4.7,0-8.5,3.8-8.5,8.5v51.2H17    v-25.5c0-4.7-3.8-8.5-8.5-8.5c-4.7,0-8.5,3.8-8.5,8.5v68.3c0,4.7,3.8,8.5,8.5,8.5c4.7,0,8.5-3.8,8.5-8.5v-25.6h17.1v68.3    c0,4.7,3.8,8.5,8.5,8.5h63.7l31.6,47.4c1.6,2.4,4.3,3.8,7.1,3.8h238.9c3.2,0,6.2-1.8,7.6-4.7l23.2-46.5h23.6l23.2,46.5    c1.5,2.9,4.4,4.7,7.6,4.7h34.1c4.7,0,8.5-3.8,8.5-8.5v-221.9C511.9,191.304,508.1,187.504,503.4,187.504z M102.3,358.204H51.1    v-119.5h51.2V358.204z M264.4,187.504h-68.3v-34.1h68.3V187.504z M435.1,358.204H418v-76.8h17.1V358.204z" />
+									</g>
+								</g>
+							</svg>
+
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								height="25px" width="25px" version="1.1" id="Layer_1" viewBox="0 0 512 512"
+								xml:space="preserve">
+								<path style="fill:#877E73;"
+									d="M512,445.217L512,445.217C512,482.1,482.1,512,445.217,512H66.783C29.9,512,0,482.1,0,445.217l0,0  c0-18.442,14.949-33.391,33.391-33.391v-22.261c0-36.883,29.9-66.783,66.783-66.783l0,0V222.609  c0-61.472,49.833-111.304,111.304-111.304l0,0c-30.736,0-55.652-24.917-55.652-55.652l0,0C155.826,24.917,180.743,0,211.478,0  h89.043c30.736,0,55.652,24.917,55.652,55.652l0,0c0,30.736-24.917,55.652-55.652,55.652l0,0  c61.471,0,111.304,49.832,111.304,111.304v100.174l0,0c36.883,0,66.783,29.9,66.783,66.783v22.261  C497.051,411.826,512,426.775,512,445.217z" />
+								<path style="fill:#A59A8E;"
+									d="M423.585,465.378L423.585,465.378c0,25.748-19.573,46.622-43.718,46.622H132.133  c-24.145,0-43.718-20.873-43.718-46.622l0,0c0-12.873,9.787-23.31,21.859-23.31v-15.54c0-25.748,19.573-46.622,43.718-46.622l0,0  V250.464c0-42.913,32.622-77.703,72.863-77.703h58.29c40.241,0,72.863,34.788,72.863,77.703v129.441l0,0  c24.145,0,43.718,20.873,43.718,46.622v15.54C413.799,442.067,423.585,452.504,423.585,465.378z M226.318,111.304h59.362  c20.491,0,37.102-14.95,37.102-33.391l0,0c0-18.441-16.611-33.391-37.101-33.391H226.32c-20.491,0-37.102,14.95-37.102,33.391l0,0  C189.217,96.354,205.828,111.304,226.318,111.304z" />
+								<path style="fill:#3D3630;"
+									d="M512,445.217L512,445.217C512,482.1,482.1,512,445.217,512H66.783C29.9,512,0,482.1,0,445.217l0,0  c0-18.442,14.949-33.391,33.391-33.391v-22.261c0-36.883,29.9-66.783,66.783-66.783l0,0c36.883,0,66.783,29.9,66.783,66.783v22.261  h178.087v-22.261c0-36.883,29.9-66.783,66.783-66.783l0,0c36.883,0,66.783,29.9,66.783,66.783v22.261  C497.051,411.826,512,426.775,512,445.217z" />
+								<path style="fill:#5E5854;"
+									d="M166.957,389.565v22.261h178.087v-22.261c0-36.883,29.9-66.783,66.783-66.783l0,0  c36.883,0,66.783,29.9,66.783,66.783v22.261c14.537,0,26.899,9.293,31.484,22.261H1.908c4.585-12.968,16.946-22.261,31.484-22.261  v-22.261c0-36.883,29.9-66.783,66.783-66.783l0,0C137.057,322.783,166.957,352.682,166.957,389.565z" />
+								<path style="fill:#F77E41;"
+									d="M435.367,189.025L194.935,434.087H70.283l301.438-307.335c8.598-8.787,22.692-8.941,31.48-0.344  l31.823,31.136C443.812,166.143,443.965,180.236,435.367,189.025z" />
+							</svg>
+
+							<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="25px" height="25px"
+								viewBox="0 0 24 24" id="car-door-left-4" data-name="Flat Color" class="icon flat-color">
+								<path id="primary"
+									d="M3,4V20a2,2,0,0,0,2,2h7a1,1,0,0,0,1-.76,5.11,5.11,0,0,1,4.25-3.83l2.06-.3a2,2,0,0,0,1.72-2V11a1,1,0,0,0-.29-.71L13,2.59A2,2,0,0,0,11.59,2H5A2,2,0,0,0,3,4ZM5,4h6.59l6,6H5Z"
+									style="fill: rgb(0, 0, 0);" />
+								<path id="secondary" d="M6,14H9a1,1,0,0,0,0-2H6a1,1,0,0,0,0,2Z" style="fill: orange;" />
+							</svg>
+						</div>
+
+
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+
+
+
+	<script src="hud.js"></script>
+
+</body>
+
+</html>
