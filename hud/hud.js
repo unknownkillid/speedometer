@@ -489,6 +489,74 @@ function setBankAmount(amount) {
   bank.textContent = `$${amount}`;
 }
 
+//RPM logic
+function rpmSpeedo(water, rpm) {
+  const maxDashOffset = 722.2;
+  const progressValue = (rpm * 100) * 0.70;
+  
+  // Calculate new dash offset
+  const newDashOffset = maxDashOffset - (maxDashOffset * (progressValue / 100));
+  progressCircle.style.strokeDashoffset = newDashOffset;
+
+  // Calculate the rotation for the arrow
+  // Assuming max RPM corresponds to a 270-degree rotation
+  const maxRPM = 100; // Adjust this value based on your max RPM
+  const minAngle = -34; // Starting angle
+  const maxAngle = 236; // Ending angle
+  const rotationRange = maxAngle - minAngle;
+  let rotation = minAngle + ((rpm / 1) * rotationRange);
+
+if (rpm >= 0.2) {
+    rotation -= 5
+  }
+
+  if (rpm >= 0.5) {
+    rotation -= 8
+  }
+
+  if (rpm >= 1) {
+    rotation -= 8
+  }
+
+  
+  // Calculate the angle based on RPM
+  const arrowParent = document.getElementById('arrowParent');
+  arrowParent.style.transform = `rotateZ(${rotation}deg)`;
+  console.log(rotation);
+}
+
+
+//speedometer lights
+const waterPump = document.getElementById('waterPump')
+const arrow = document.getElementById('arrow')
+const arrowMain = document.getElementById('arrowMain')
+const seven = document.getElementById('seven')
+const eight = document.getElementById('eight')
+const rpmh1Divs = document.querySelectorAll('.rpmh1Divs h1')
+
+function engineOnSpeedo() {
+  waterPump.classList.add('arrowBackgroundForRpm')
+  arrow.classList.add('arrowBackgroundForRpm')
+  arrowMain.classList.add('arrowBackgroundForRpm')
+  seven.classList.add('rpmNumsEngineOn')
+  eight.classList.add('rpmNumsEngineOn')
+
+  rpmh1Divs.forEach(rpmNumbers => {
+    rpmNumbers.classList.add('rpmNumbersWhiteColor')
+  })
+}
+function engineOffSpeedo() {
+  waterPump.classList.remove('arrowBackgroundForRpm')
+  arrow.classList.remove('arrowBackgroundForRpm')
+  arrowMain.classList.remove('arrowBackgroundForRpm')
+  seven.classList.remove('rpmNumsEngineOn')
+  eight.classList.remove('rpmNumsEngineOn')
+
+  rpmh1Divs.forEach(rpmNumbers => {
+    rpmNumbers.classList.remove('rpmNumbersWhiteColor')
+  })
+}
+
 
 // საწვავის ლოგიკა თუ საწვავის 10% ან ნაკლებია დარჩენილი მაჩვენებელი განათდეს და შეიცვალოს ფერი
 // const gasPumpSign = document.getElementById('gasPump')
