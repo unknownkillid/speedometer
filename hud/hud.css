@@ -4,6 +4,7 @@
 	--speedo-numColor: rgb(175, 175, 175);
 	--main-hud-font: "moneyFont";
 	--hud-numbers-font: "blackOps";
+	--speedometer-font: "speedometer"
 }
 
 @font-face {
@@ -15,15 +16,22 @@
 	font-family: "blackOps";
 	src: url(res/fonts/Black_Ops_One/BlackOpsOne-Regular.ttf);
 }
+
 @font-face {
 	font-family: "moneyFont";
 	src: url(res/fonts/Quantico/Quantico-Regular.ttf);
+}
+
+@font-face {
+	font-family: "speedometer";
+	src: url(res/fonts/Righteous-Regular.ttf);
 }
 
 * {
 	user-select: none;
 	/* color: rgb(75, 75, 75); */
 }
+
 body {
 	/*background-color: rgb(19, 19, 19);*/
 	/* background: url("./unknown.png"); */
@@ -164,8 +172,7 @@ body {
 	overflow: hidden;
 }
 
-#poly {
-}
+#poly {}
 
 .heart-rate {
 	max-width: 160px;
@@ -199,18 +206,14 @@ body {
 	left: -120%;
 	animation: heartRateOut 4.5s linear infinite;
 	background: rgba(0, 102, 204, 1);
-	background: -moz-linear-gradient(
-		left,
-		rgba(0, 102, 204, 1) 0%,
-		rgba(0, 102, 204, 1) 50%,
-		rgba(0, 102, 204, 0) 100%
-	);
-	background: -webkit-linear-gradient(
-		left,
-		rgba(0, 102, 204, 1) 0%,
-		rgba(0, 102, 204, 1) 50%,
-		rgba(0, 102, 204, 0) 100%
-	);
+	background: -moz-linear-gradient(left,
+			rgba(0, 102, 204, 1) 0%,
+			rgba(0, 102, 204, 1) 50%,
+			rgba(0, 102, 204, 0) 100%);
+	background: -webkit-linear-gradient(left,
+			rgba(0, 102, 204, 1) 0%,
+			rgba(0, 102, 204, 1) 50%,
+			rgba(0, 102, 204, 0) 100%);
 	background: -o-linear-gradient(left, rgba(0, 102, 204, 1) 0%, rgba(0, 102, 204, 1) 50%, rgba(0, 102, 204, 0) 100%);
 	background: -ms-linear-gradient(left, rgba(0, 102, 204, 1) 0%, rgba(0, 102, 204, 1) 50%, rgba(0, 102, 204, 0) 100%);
 	background: linear-gradient(to right, rgba(0, 102, 204, 1) 0%, rgba(0, 102, 204, 1) 80%, rgba(0, 102, 204, 0) 100%);
@@ -265,9 +268,11 @@ body {
 	0% {
 		width: 100%;
 	}
+
 	50% {
 		width: 0%;
 	}
+
 	100% {
 		width: 0;
 	}
@@ -277,9 +282,11 @@ body {
 	0% {
 		left: -120%;
 	}
+
 	30% {
 		left: -120%;
 	}
+
 	100% {
 		left: 0;
 	}
@@ -316,6 +323,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 }
+
 .testing {
 	position: absolute;
 	top: 10%;
@@ -383,6 +391,7 @@ body {
 	0% {
 		opacity: 0;
 	}
+
 	100% {
 		opacity: 1;
 	}
@@ -392,6 +401,7 @@ body {
 	100% {
 		opacity: 0;
 	}
+
 	0% {
 		opacity: 1;
 	}
@@ -770,7 +780,7 @@ body {
 }
 
 #darkness {
-	/* background-image: url("res/maxresdefault.jpg"); */
+	background-image: url("res/maxresdefault.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -792,12 +802,14 @@ body {
 	float: left;
 	text-align: center;
 }
+
 .barOverflow {
 	position: relative;
 	width: 150px;
 	height: 70px;
 	margin-bottom: -14px;
 }
+
 .bar {
 	position: absolute;
 	top: 0;
@@ -856,11 +868,20 @@ body {
 	width: 400px;
 	padding: 20px;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: flex-end;
 	flex-direction: column;
 	height: 100vh;
 	gap: 30px;
+}
+
+.right-hud-column {
+	height: auto;
+	display: flex;
+	align-items: flex-end;
+	gap: 50px;
+	flex-direction: column;
+	width: 100%;
 }
 
 .online-players-content {
@@ -996,7 +1017,6 @@ i {
 .speedometer-main-container {
 	width: 500px;
 	height: 300px;
-	background-color: black;
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;
@@ -1006,20 +1026,124 @@ i {
 .rpm {
 	width: 200px;
 	height: 200px;
-	background-color: red;
+	background-color: rgba(7, 7, 7, 0.719);
 	border-radius: 200px;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	position: relative;
+	overflow: hidden;
 }
 
 .rpmh1Divs {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	position: absolute;
+	align-items: center;
 }
 
 .rpmh1Divs h1 {
-	color: white;
+	color: rgb(150, 150, 150);
 	font-size: x-large;
+	font-family: var(--speedometer-font);
+}
+
+.rpm4 {
+	top: 4px;
+}
+
+.rpm35 {
+	bottom: 153px;
+	padding: 0 42px;
+}
+
+.rpm26 {
+	bottom: 120px;
+	padding: 0 14px;
+}
+
+.rpm17 {
+	bottom: 80px;
+	padding: 0 10px;
+}
+
+
+.rpm08 {
+	bottom: 40px;
+	padding: 0 25px;
+}
+
+.rpm4 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.rpm-arrow {
+	width: 70px;
+	height: 70px;
+	box-shadow:
+		0 0 10px rgba(255, 165, 0, 0.8),
+		/* Orange glow */
+		0 0 20px rgba(255, 140, 0, 0.6),
+		/* Darker orange */
+		0 0 30px rgba(255, 69, 0, 0.4),
+		/* Orange-red */
+		0 0 40px rgba(255, 0, 0, 0.452),
+		/* Red glow */
+		0 0 50px rgba(255, 0, 0, 0.651);
+	/* Fainter red */
+	background-color: #FBAB7E;
+	background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+	border-radius: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.arrow-parent {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: black;
+	transform: rotateZ(-34deg);
+}
+
+.arrow {
+	width: 140px !important;
+	height: 6px;
+	background-color: #FEE140;
+	background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
+	border-bottom-left-radius: 100%;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 100%;
+	border-top-right-radius: 5px;
+	position: absolute;
+	top: 35%;
+	left: -90px;
+}
+
+.rpm-water {
+	width: 100px;
+	height: 60px;
+	box-shadow: inset 0px 0px 10px black;
+	position: absolute;
+	bottom: -20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+.rpm-progress {
+	position: absolute;
+	width: 270px;
+	height: 270px;
+	transform: rotateZ(145deg);
+	transition: 0.5s;
 }
 
 .speedo {
@@ -1029,6 +1153,61 @@ i {
 	border-radius: 200px;
 }
 
+.water-signs {
+	color: white;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	padding: 0 10px;
+	align-items: center;
+}
+
+.water-signs p {
+	font-size: small;
+}
+
+.water-lines {
+	position: relative;
+}
+
+.waterLine {
+	position: absolute;
+	width: 10px;
+	height: 2px;
+	background-color: white;
+}
+
+.line-water1 {
+	transform: rotateZ(-50deg);
+}
+
+.line-water2 {
+	transform: rotateZ(-70deg);
+	left: 20px;
+	bottom: -13px;
+}
+
+.line-water3 {
+	transform: rotateZ(-90deg);
+	left: 45px;
+	bottom: -10px;
+}
+
+.line-water4 {
+	transform: rotateZ(-120deg);
+	left: 70px;
+	bottom: -13px;
+}
+
+.line-water5 {
+	transform: rotateZ(50deg);
+	left: 90px;
+}
+
+.water-pump {
+	position: absolute;
+	transform: rotateZ(64deg);
+}
 
 /* .speedometer {
 	width: 260px;
