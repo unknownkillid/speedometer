@@ -1139,8 +1139,16 @@ i {
 .speedo {
 	width: 270px;
 	height: 270px;
-	background-color: red;
 	border-radius: 200px;
+	background-color: rgba(7, 7, 7, 0.719);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	position: relative;
+	overflow: hidden;
+	border: 2px solid gray;
 }
 
 .water-signs {
@@ -1245,6 +1253,59 @@ i {
 	color: rgb(146, 2, 2) !important;
 	text-shadow: 0px 0px 30px rgb(146, 2, 2) !important;
 	transition: 0.5s;
+}
+
+.speedoNums {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.speedoNums h1 {
+	color: white;
+	font-size: 17px;
+	font-family: var(--speedometer-font);
+}
+
+.speedo320 {
+	padding: 0 35px;
+	bottom: 50px;
+}
+.speedo300 {
+	padding: 0 20px;
+	bottom: 75px;
+}
+.speedo280 {
+	padding: 0 10px;
+	bottom: 100px;
+}
+.speedo260 {
+	padding: 0 5px;
+	bottom: 125px;
+}
+.speedo240 {
+	padding: 0 10px;
+	bottom: 150px;
+}
+.speedo220 {
+	padding: 0 20px;
+	bottom: 175px;
+}
+.speedo200 {
+	padding: 0 38px;
+	bottom: 200px;
+}
+.speedo180 {
+	padding: 0 65px;
+	top: 20px;
+}
+.speedo160 {
+	top: 7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* .speedometer {
