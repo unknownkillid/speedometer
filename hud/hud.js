@@ -545,6 +545,7 @@ function engineOnSpeedo() {
     rpmNumbers.classList.add('rpmNumbersWhiteColor')
   })
 }
+
 function engineOffSpeedo() {
   waterPump.classList.remove('arrowBackgroundForRpm')
   arrow.classList.remove('arrowBackgroundForRpm')
@@ -556,7 +557,6 @@ function engineOffSpeedo() {
     rpmNumbers.classList.remove('rpmNumbersWhiteColor')
   })
 }
-
 
 // საწვავის ლოგიკა თუ საწვავის 10% ან ნაკლებია დარჩენილი მაჩვენებელი განათდეს და შეიცვალოს ფერი
 // const gasPumpSign = document.getElementById('gasPump')
