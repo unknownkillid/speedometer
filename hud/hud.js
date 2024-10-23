@@ -493,7 +493,7 @@ function setBankAmount(amount) {
 function rpmSpeedo(water, rpm) {
   const maxDashOffset = 722.2;
   const progressValue = (rpm * 100) * 0.70;
-  
+  const progressCircle = document.getElementById('progressCircle')
   // Calculate new dash offset
   const newDashOffset = maxDashOffset - (maxDashOffset * (progressValue / 100));
   progressCircle.style.strokeDashoffset = newDashOffset;
@@ -533,30 +533,85 @@ const arrowMain = document.getElementById('arrowMain')
 const seven = document.getElementById('seven')
 const eight = document.getElementById('eight')
 const rpmh1Divs = document.querySelectorAll('.rpmh1Divs h1')
+const skullRpm = document.getElementById('skull')
+
+const speedometerNumbers = document.querySelectorAll('.speedoNums h1')
+const speedometerArrow = document.getElementById('speedometerArrow')
+const speedoArrow = document.getElementById('speedoArrow')
+const fuelPump = document.getElementById('fuelPump')
+
+
+
 
 function engineOnSpeedo() {
   waterPump.classList.add('arrowBackgroundForRpm')
+  fuelPump.classList.add('arrowBackgroundForRpm')
   arrow.classList.add('arrowBackgroundForRpm')
+  speedometerArrow.classList.add('arrowBackgroundForRpm')
   arrowMain.classList.add('arrowBackgroundForRpm')
+  speedoArrow.classList.add('arrowBackgroundForRpm')
   seven.classList.add('rpmNumsEngineOn')
   eight.classList.add('rpmNumsEngineOn')
+  skullRpm.classList.add('skullred')
 
   rpmh1Divs.forEach(rpmNumbers => {
     rpmNumbers.classList.add('rpmNumbersWhiteColor')
+  })
+
+  speedometerNumbers.forEach(speedNumbers => {
+    speedNumbers.classList.add('speedometerNumbersEngineOn')
   })
 }
 
 function engineOffSpeedo() {
   waterPump.classList.remove('arrowBackgroundForRpm')
+  fuelPump.classList.remove('arrowBackgroundForRpm')
   arrow.classList.remove('arrowBackgroundForRpm')
+  speedometerArrow.classList.remove('arrowBackgroundForRpm')
   arrowMain.classList.remove('arrowBackgroundForRpm')
+  speedoArrow.classList.remove('arrowBackgroundForRpm')
   seven.classList.remove('rpmNumsEngineOn')
   eight.classList.remove('rpmNumsEngineOn')
+  skullRpm.classList.remove('skullred')
 
   rpmh1Divs.forEach(rpmNumbers => {
     rpmNumbers.classList.remove('rpmNumbersWhiteColor')
   })
+
+  speedometerNumbers.forEach(speedNumbers => {
+    speedNumbers.classList.remove('speedometerNumbersEngineOn')
+  })
 }
+
+//speedometer Logic
+
+
+function speedometer(kmh, fuel, fullkm) {
+  const maxDashOffset = 722.2; 
+  const maxSpeed = 320; 
+  
+  kmh = Math.max(0, Math.min(kmh, maxSpeed));
+
+  const progressValue = (kmh / maxSpeed) * 100;
+  
+  const progressCircle = document.getElementById('speedometerFillup');
+  
+  const newDashOffset = maxDashOffset - (maxDashOffset * (kmh / maxSpeed));
+  progressCircle.style.strokeDashoffset = newDashOffset;
+
+  const minAngle = -34; 
+  const maxAngle = 236;
+  const rotationRange = maxAngle - minAngle;
+  
+  let rotation = minAngle + ((kmh / maxSpeed) * rotationRange);
+
+  const arrowParent = document.getElementById('speedoArrowParent');
+  
+  arrowParent.style.transform = `rotateZ(${rotation}deg)`;
+
+  console.log(`Speed: ${kmh} km/h, Arrow Rotation: ${rotation} degrees, Dash Offset: ${newDashOffset}`);
+}
+
 
 // საწვავის ლოგიკა თუ საწვავის 10% ან ნაკლებია დარჩენილი მაჩვენებელი განათდეს და შეიცვალოს ფერი
 // const gasPumpSign = document.getElementById('gasPump')

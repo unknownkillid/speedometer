@@ -1059,12 +1059,12 @@ i {
 
 .rpm35 {
 	bottom: 153px;
-	padding: 0 42px;
+	padding: 0 45px;
 }
 
 .rpm26 {
 	bottom: 120px;
-	padding: 0 14px;
+	padding: 0 18px;
 }
 
 .rpm17 {
@@ -1094,6 +1094,11 @@ i {
 	justify-content: center;
 }
 
+.speedometerArrow {
+	width: 110px;
+	height: 110px;
+}
+
 .arrow-parent {
 	position: relative;
 	width: 20px;
@@ -1102,6 +1107,12 @@ i {
 	background-color: rgb(0, 0, 0);
 	transform: rotateZ(-34deg);
 	transition: 0.5s;
+}
+
+.speedometerArrowParent {
+	width: 40px;
+	height: 40px;
+	transform: rotateZ(-40deg);
 }
 
 .arrow {
@@ -1115,9 +1126,14 @@ i {
 	position: absolute;
 	top: 35%;
 	left: -90px;
-	
 }
 
+.speedoArrowArrow {
+	width: 200px !important;
+	position: absolute;
+	top: 35%;
+	left: -115px;
+}
 .rpm-water {
 	width: 100px;
 	height: 60px;
@@ -1126,6 +1142,7 @@ i {
 	bottom: -20px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
+	border: 1px solid white;
 }
 
 .rpm-progress {
@@ -1134,6 +1151,23 @@ i {
 	height: 270px;
 	transform: rotateZ(145deg);
 	transition: 0.5s;
+}
+
+.rpm-progressSpeedometer {
+	position: absolute;
+	width: 350px;
+	height: 350px;
+	transform: rotateZ(142deg);
+	transition: 0.5s;
+}
+
+.fa-skull-crossbones {
+	color: gray;
+}
+
+.skullred {
+	color: red;
+	text-shadow: 0px 0px 20px red;
 }
 
 .speedo {
@@ -1160,6 +1194,10 @@ i {
 	align-items: center;
 }
 
+.fuelSign {
+	height: 25px;
+}
+
 .water-signs p {
 	font-size: small;
 }
@@ -1173,6 +1211,10 @@ i {
 	width: 10px;
 	height: 2px;
 	background-color: white;
+}
+
+.fuelLinesDown {
+
 }
 
 .line-water1 {
@@ -1207,11 +1249,11 @@ i {
 	height: 20px;
 	position: absolute;
 	left: 40px;
-	top: -30px;
+	top: -28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transform: rotateZ(302deg);
+	transform: rotateZ(320deg);
 	transition: 0.4s;
 }
 
@@ -1264,7 +1306,7 @@ i {
 }
 
 .speedoNums h1 {
-	color: white;
+	color: gray;
 	font-size: 17px;
 	font-family: var(--speedometer-font);
 }
@@ -1274,31 +1316,31 @@ i {
 	bottom: 50px;
 }
 .speedo300 {
-	padding: 0 20px;
+	padding: 0 23px;
 	bottom: 75px;
 }
 .speedo280 {
-	padding: 0 10px;
+	padding: 0 14px;
 	bottom: 100px;
 }
 .speedo260 {
-	padding: 0 5px;
-	bottom: 125px;
+	padding: 0 12px;
+	bottom: 127px;
 }
 .speedo240 {
-	padding: 0 10px;
-	bottom: 150px;
+	padding: 0 15px;
+	bottom: 152px;
 }
 .speedo220 {
-	padding: 0 20px;
-	bottom: 175px;
+	padding: 0 27px;
+	bottom: 180px;
 }
 .speedo200 {
-	padding: 0 38px;
-	bottom: 200px;
+	padding: 0 47px;
+	bottom: 205px;
 }
 .speedo180 {
-	padding: 0 65px;
+	padding: 0 75px;
 	top: 20px;
 }
 .speedo160 {
@@ -1306,6 +1348,14 @@ i {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.fa-gas-pump {
+	font-size: 12px;
+}
+
+.speedometerNumbersEngineOn {
+	color: white !important;
 }
 
 /* .speedometer {
