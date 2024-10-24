@@ -599,15 +599,15 @@ function speedometer(kmh, fuel, fullkm) {
   const newDashOffset = maxDashOffset - (maxDashOffset * (kmh / maxSpeed));
   progressCircle.style.strokeDashoffset = newDashOffset;
 
-  const minAngle = -34; 
+  const minAngle = -34;
   const maxAngle = 236;
   const rotationRange = maxAngle - minAngle;
   
-  let rotation = minAngle + ((kmh / maxSpeed) * rotationRange);
-
+  let rotation = minAngle + ((kmh / maxSpeed) * 250); //main rotation logic
   const arrowParent = document.getElementById('speedoArrowParent');
   
   arrowParent.style.transform = `rotateZ(${rotation}deg)`;
+
 
   console.log(`Speed: ${kmh} km/h, Arrow Rotation: ${rotation} degrees, Dash Offset: ${newDashOffset}`);
 }
