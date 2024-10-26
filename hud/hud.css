@@ -1340,8 +1340,8 @@ i {
 	bottom: 205px;
 }
 .speedo180 {
-	padding: 0 75px;
-	top: 20px;
+	padding: 0 80px;
+	top: 18px;
 }
 .speedo160 {
 	top: 7px;
@@ -1349,6 +1349,7 @@ i {
 	align-items: center;
 	justify-content: center;
 }
+
 
 .fa-gas-pump {
 	font-size: 12px;
@@ -1358,6 +1359,14 @@ i {
 	color: white !important;
 }
 
+
+.rpmAndSpeedoClass {
+	color: orange !important;
+}
+
+.rpmRedClassSpeedo {
+	color: red !important;
+}
 /* .speedometer {
 	width: 260px;
 	height: 260px;

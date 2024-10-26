@@ -506,6 +506,17 @@ function rpmSpeedo(water, rpm) {
   const rotationRange = maxAngle - minAngle;
   let rotation = minAngle + ((rpm / 1) * rotationRange);
 
+  const rpm0 = document.getElementById('rpm0')
+  const rpm1 = document.getElementById('rpm1')
+  const rpm2 = document.getElementById('rpm2')
+  const rpm3 = document.getElementById('rpm3')
+  const rpm4 = document.getElementById('rpm4')
+  const rpm5 = document.getElementById('rpm5')
+  const rpm6 = document.getElementById('rpm6')
+  const rpm7 = document.getElementById('rpm7')
+  const rpm8 = document.getElementById('rpm8')
+
+
 if (rpm >= 0.2) {
     rotation -= 5
   }
@@ -519,6 +530,57 @@ if (rpm >= 0.2) {
   }
 
   
+
+  if (rpm >= 0.12) {
+    rpm0.classList.add('rpmAndSpeedoClass')
+    rpm1.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm0.classList.remove('rpmAndSpeedoClass')
+    rpm1.classList.remove('rpmAndSpeedoClass')
+  }
+
+  if (rpm >= 0.25) {
+    rpm2.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm2.classList.remove('rpmAndSpeedoClass')
+  }
+
+  if (rpm >= 0.35) {
+    rpm3.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm3.classList.remove('rpmAndSpeedoClass')
+  }
+
+  if (rpm >= 0.51) {
+    rpm4.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm4.classList.remove('rpmAndSpeedoClass')
+  }
+
+  if (rpm >= 0.63) {
+    rpm5.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm5.classList.remove('rpmAndSpeedoClass')
+  }
+  
+  if (rpm >= 0.74) {
+    rpm6.classList.add('rpmAndSpeedoClass')
+  } else {
+    rpm6.classList.remove('rpmAndSpeedoClass')
+  }
+
+  if (rpm >= 0.85) {
+    rpm7.classList.add('rpmRedClassSpeedo')
+  } else {
+    rpm7.classList.remove('rpmRedClassSpeedo')
+  }
+
+  if (rpm >= 0.97) {
+    rpm8.classList.add('rpmRedClassSpeedo')
+  }else {
+    rpm8.classList.remove('rpmRedClassSpeedo')
+  }
+  
   // Calculate the angle based on RPM
   const arrowParent = document.getElementById('arrowParent');
   arrowParent.style.transform = `rotateZ(${rotation}deg)`;
@@ -530,10 +592,7 @@ if (rpm >= 0.2) {
 const waterPump = document.getElementById('waterPump')
 const arrow = document.getElementById('arrow')
 const arrowMain = document.getElementById('arrowMain')
-const seven = document.getElementById('seven')
-const eight = document.getElementById('eight')
 const rpmh1Divs = document.querySelectorAll('.rpmh1Divs h1')
-const skullRpm = document.getElementById('skull')
 
 const speedometerNumbers = document.querySelectorAll('.speedoNums h1')
 const speedometerArrow = document.getElementById('speedometerArrow')
@@ -550,9 +609,8 @@ function engineOnSpeedo() {
   speedometerArrow.classList.add('arrowBackgroundForRpm')
   arrowMain.classList.add('arrowBackgroundForRpm')
   speedoArrow.classList.add('arrowBackgroundForRpm')
-  seven.classList.add('rpmNumsEngineOn')
-  eight.classList.add('rpmNumsEngineOn')
-  skullRpm.classList.add('skullred')
+  document.getElementById('rpm7').classList.add('rpmNumsEngineOn')
+  document.getElementById('rpm8').classList.add('rpmNumsEngineOn')
 
   rpmh1Divs.forEach(rpmNumbers => {
     rpmNumbers.classList.add('rpmNumbersWhiteColor')
@@ -570,9 +628,8 @@ function engineOffSpeedo() {
   speedometerArrow.classList.remove('arrowBackgroundForRpm')
   arrowMain.classList.remove('arrowBackgroundForRpm')
   speedoArrow.classList.remove('arrowBackgroundForRpm')
-  seven.classList.remove('rpmNumsEngineOn')
-  eight.classList.remove('rpmNumsEngineOn')
-  skullRpm.classList.remove('skullred')
+  document.getElementById('rpm7').classList.remove('rpmNumsEngineOn')
+  document.getElementById('rpm8').classList.remove('rpmNumsEngineOn')
 
   rpmh1Divs.forEach(rpmNumbers => {
     rpmNumbers.classList.remove('rpmNumbersWhiteColor')
@@ -587,29 +644,71 @@ function engineOffSpeedo() {
 
 
 function speedometer(kmh, fuel, fullkm) {
-  const maxDashOffset = 722.2; 
-  const maxSpeed = 320; 
+  const maxDashOffset = 722.2;
+  const progressValue = (kmh * 100) * 0.70;
+  const progressCircle = document.getElementById('progressCircleSpeedometer')
+  // Calculate new dash offset
+  let newDashOffset;
   
-  kmh = Math.max(0, Math.min(kmh, maxSpeed));
 
-  const progressValue = (kmh / maxSpeed) * 100;
-  
-  const progressCircle = document.getElementById('speedometerFillup');
-  
-  const newDashOffset = maxDashOffset - (maxDashOffset * (kmh / maxSpeed));
-  progressCircle.style.strokeDashoffset = newDashOffset;
 
-  const minAngle = -34;
-  const maxAngle = 236;
+  // Calculate the rotation for the arrow
+  // Assuming max RPM corresponds to a 270-degree rotation
+  const maxRPM = 100; // Adjust this value based on your max RPM
+  const minAngle = -34; // Starting angle
+  const maxAngle = 236; // Ending angle
   const rotationRange = maxAngle - minAngle;
+  let rotation = minAngle + ((kmh / 325) * rotationRange);
+
+ 
+
+
+if (kmh == 0) {
+    rotation -= 10
+  }
+
+  if (kmh >= 10) {
+    rotation -= 10
+  }
+
+  if (kmh >= 70) {
+    rotation -= 1.7
+  }
+
+  if (kmh >= 118) {
+    rotation += 2.4
+  }
+
+  if (kmh < 120) {
+    rotation += 4
+  }
+
+  if (kmh >= 210) {
+    rotation -= 2.5
+  }
+
+  if (kmh >= 290) {
+    rotation -= 2.1
+  }
+
+  if (kmh >= 320) {
+    rotation = 217.9;
+    newDashOffset = 206;
+  } else {
+    newDashOffset = maxDashOffset - (kmh / 0.62);
+  }
+
+  progressCircle.style.strokeDashoffset = newDashOffset;
+  console.log(newDashOffset + "new dash");
+
   
-  let rotation = minAngle + ((kmh / maxSpeed) * 250); //main rotation logic
+
+
+  
+  // Calculate the angle based on RPM
   const arrowParent = document.getElementById('speedoArrowParent');
-  
   arrowParent.style.transform = `rotateZ(${rotation}deg)`;
-
-
-  console.log(`Speed: ${kmh} km/h, Arrow Rotation: ${rotation} degrees, Dash Offset: ${newDashOffset}`);
+  console.log(rotation);
 }
 
 
